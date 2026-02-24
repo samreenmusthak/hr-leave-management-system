@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HR Leave Request</title>
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #bdd6faff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            width: 400px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.43);
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        select {
+            width: 106%;
+            padding: 20px;
+            margin: 10px 0;
+        }
+
+        button {
+            width: 106%;
+            padding: 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .loader {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #007bff;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+
+
+<body>
+
+<div class="container">
+    <h2>Leave Request Form</h2>
+
+    <form action="/submit-leave-form" method="post">
+        <input type="text" name="employee_name" placeholder="Employee Name" required>
+        <input type="email" name="employee_email" placeholder="Employee Email" required><br>
+
+
+        <select name="leave_type" style="height: 45px; font-size: 16px;">
+            <option>Annual Leave</option>
+            <option>Sick Leave</option>
+            <option>Emergency Leave</option>
+        </select><br><br>
+
+        <label>Start Date</label>
+        <input type="date" name="start_date" required>
+
+        <label>End Date</label>
+        <input type="date" name="end_date" required>
+
+        <textarea name="reason" placeholder="Reason" required></textarea>
+
+        <button type="submit" id="submitBtn">
+            Submit Leave Request
+        </button>
+
+        <div id="spinner" style="display:none; margin-top:10px;">
+            <div class="loader"></div>
+            <p>Submitting request...</p>
+        </div>
+    </form>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const form = document.querySelector("form");
+
+    form.addEventListener("submit", function() {
+        document.getElementById("submitBtn").style.display = "none";
+        document.getElementById("spinner").style.display = "block";
+    });
+});
+</script>
+
+</body>
+</html>
